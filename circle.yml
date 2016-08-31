@@ -1,0 +1,22 @@
+machine:
+  hosts:
+    example.local: 127.0.0.1
+  node:
+    version: 0.12.14
+
+general:
+  build_dir: project
+
+dependencies:
+  override:
+    - sudo apt-get update
+    - sudo apt-get install curl
+    - npm install grunt-cli -g
+    - npm install bower -g
+    - npm install protractor@2 -g
+
+test:
+  post:
+    - ./test.sh
+    - webdriver-manager update
+    - protractor test/protractor-conf.js
